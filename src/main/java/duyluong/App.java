@@ -6,10 +6,9 @@ package duyluong;
  */
 public class App
 {
-    public static final String PASSWORD = "A";
 
     public static void main( String[] args )
     {
-        System.out.println( "Hello World 123!" );
+        String.format("The value of my integer is %d", "Hello World");
     }
 }
