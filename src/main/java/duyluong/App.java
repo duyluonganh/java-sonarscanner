@@ -4,10 +4,11 @@ package duyluong;
  * Hello world!
  *
  */
-public class App 
+public class App
 {
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World 123!" );
+        String.format("The value of my integer is %d", "Hello World");
     }
 }
