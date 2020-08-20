@@ -9,6 +9,6 @@ public class App
 
     public static void main( String[] args )
     {
-        String.format("The value of my integer is %d halo", "Hello World");
+        String.format("The value of my integer is %d", "Hello World");
     }
 }
