@@ -15,6 +15,10 @@ public class App
         String a = null;
 
         switch (a) {
+
+        }
+
+        switch (a) {
             
         }
     }
