@@ -1,43 +1,24 @@
-name: Analyze pull request
+name: Java CI
 
-on:
-  pull_request:
-    types: [opened, edited, reopened, synchronize]
-    branches:
-      - master
-      - 'JAHIA-[0-9]-[0-9]-[0-9]-X-BRANCH'
-      - '[0-9]_[0-9]_x'
-      - '[0-9]-[0-9]-X-BRANCH'
+on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: Setup sonarqube
-        uses: warchant/setup-sonar-scanner@v1
-
-      - name: 'Checkout repository on branch: ${{ github.REF }}'
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.HEAD_REF }}
-
-      - name: Retrieve entire repository history
-        run: |
-          git fetch --prune --unshallow
-      - name: Run an analysis of the PR
-        env:
-          # to get access to secrets.SONAR_TOKEN, provide GITHUB_TOKEN
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: sonar-scanner
-          -Dsonar.host.url=https://sonarcloud.io/
-          -Dsonar.login=6ccf0b6425cc3bd1021daa2524b8edb98140935e
-          -Dsonar.organization=duyluonganh
-          -Dsonar.projectKey=duyluong:java-sonarscanner
-          -Dsonar.pullrequest.key=${{ github.event.number }}
-          -Dsonar.pullrequest.branch=${{ github.HEAD_REF }}
-          -Dsonar.pullrequest.base=${{ github.BASE_REF }}
-          -Dsonar.pullrequest.github.repository=${{ github.repository }}
-          -Dsonar.scm.provider=git
-          -Dsonar.java.binaries=/tmp
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build with Maven
+      run: mvn -B verify spotbugs:spotbugs
+    - uses: jwgmeligmeyling/spotbugs-github-action@master
+      with:
+        path: '**/spotbugsXml.xml'
