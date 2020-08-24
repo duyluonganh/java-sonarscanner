@@ -34,7 +34,7 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io/
           -Dsonar.login=6ccf0b6425cc3bd1021daa2524b8edb98140935e
           -Dsonar.organization=duyluonganh
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.projectKey=duyluong:java-sonarscanner
           -Dsonar.pullrequest.key=${{ github.event.number }}
           -Dsonar.pullrequest.branch=${{ github.HEAD_REF }}
           -Dsonar.pullrequest.base=${{ github.BASE_REF }}
