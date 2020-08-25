@@ -11,6 +11,7 @@ public class App
     {
         String.format("The value of my integer is %s", "Hello World");
         String.format("The value of my integer is %d", "Hello World");
+        String.format("The value of my integer is %d", "Hello World");
 
         String a = null;
 
@@ -19,7 +20,7 @@ public class App
         }
 
         switch (a) {
-            
+
         }
     }
 }
