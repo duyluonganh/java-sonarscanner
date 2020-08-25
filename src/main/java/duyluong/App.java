@@ -9,11 +9,11 @@ public class App
 
     public static void main( String[] args )
     {
-        String.format("The value of my integer is %s", "Hello World");
-        String.format("The value of my integer is %d", "Hello World");
-        String.format("The value of my integer is %d", "Hello World");
-
         String a = null;
+
+        a = String.format("The value of my integer is %s", "Hello World");
+        a = String.format("The value of my integer is %s", "Hello World");
+        a = String.format("The value of my integer is %s", "Hello World");
 
         switch (a) {
 
