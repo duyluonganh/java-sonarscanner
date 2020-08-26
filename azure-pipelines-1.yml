@@ -1,0 +1,18 @@
+pr:
+  branches:
+    include:
+    - master
+    - release-*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    goals: 'sonar:sonar -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=420aa028944986a7c323bd3ff2cecb159217cf8f -Dsonar.organization=duyluonganh'
